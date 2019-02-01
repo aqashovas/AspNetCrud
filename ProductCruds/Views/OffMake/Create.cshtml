@@ -1,0 +1,50 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Yarat</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="@Url.Action("create")" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.LabelFor(Model => Model.Name)
+                <input type="text" id="name" class="form-control" name="Name" data-validation="required length" data-validation-length="min5" data-validation-error-msg="Ad boş ola bilməz və mininum 5 simvol olmalıdır" />
+                @Html.ValidationMessageFor(Model => Model.Name, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(Model => Model.BrandId)
+                @Html.DropDownList("BrandId", new SelectList(ViewBag.Brands, "Id", "Name"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(Model => Model.BrandId, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(Model => Model.CategoryId)
+                @Html.DropDownList("CategoryId", new SelectList(ViewBag.Categories, "Id", "Name"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(Model => Model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(Model => Model.Count)
+                <input type="number" id="count" class="form-control" name="Count" data-validation="number" data-validation-allowing="range[1;100000]" data-validation-error-msg="Say minimum 1 olmalıdır"/>
+                @Html.ValidationMessageFor(Model => Model.Count, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(Model => Model.Price)
+                <input type="text" id="price" class="form-control" name="Price" data-validation="number" data-validation-allowing="range[1;100000]" data-validation-error-msg="Rəqəm daxil edilməlidir" />
+                @Html.ValidationMessageFor(Model => Model.Price, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(Model => Model.About)
+                <textarea id="about" class="form-control" name="About" rows="4"  data-validation="required length" data-validation-length="min200" data-validation-error-msg="Mətnin uzunluğu minimum 200 olmalıdır"></textarea>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(Model => Model.Photo)
+                <input type="file" id="Photo" class="form-control" name="Photo" />
+                @Html.ValidationMessageFor(Model => Model.Photo, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-primary">Əlavə et</button>
+        </form>
+    </div>
+</div>

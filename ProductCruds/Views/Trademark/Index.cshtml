@@ -1,0 +1,32 @@
+﻿@model List<Brand>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Markalar</h2>
+<div class="row">
+    <div class="col-lg-6">
+        <a class="btn btn-primary" href="@Url.Action("create")">Yarat</a>
+        <table  class="table mt-3" border="0">
+           <thead>
+               <tr>
+                   <th>Ad</th>
+                   <th></th>
+               </tr>
+           </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        <a href="@Url.Action("edit",new { id= item.Id })"><i class="far fa-edit"></i></a>
+                        <a class="text-danger" href="@Url.Action("delete",new { id= item.Id })"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

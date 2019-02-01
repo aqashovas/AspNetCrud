@@ -1,0 +1,49 @@
+﻿@model List<Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Filmler</h2>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="@Url.Action("create")">Yenisini elavə et</a>
+        <hr />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Məhsulun adı</th>
+                    <th>Marka</th>
+                    <th>Kateqoriya</th>
+                    <th>Say</th>
+                    <th>Qiymət</th>
+                    <th>Haqqında</th>
+                    <th>Şəkil</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Brand.Name</td>
+                    <td>@item.Category.Name</td>
+                    <td>@item.Count</td>
+                    <td>@item.Price</td>
+                    <td>@item.About</td>
+                    <td>
+                        <img src="~/Uploads/@item.Photo" width="75" />
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action("edit",new { id = item.Id })">Yenilə</a>
+                        <a class="text-danger" onclick="return confirm('Əminsiniz mi?')" href="@Url.Action("delete",new { id=item.Id })">Sil</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
